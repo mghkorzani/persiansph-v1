@@ -2,7 +2,7 @@
 # PersianSPH - Multi-Layered Environment to Simulate Multi-Physical Systems         #
 #                using Smoothed Particle Hydrodynamics method                       #
 #                                                                                   #
-# Copyright (C) 2016 Maziar Gholami Korzani                                         #
+# Copyright (C) 2018 Maziar Gholami Korzani                                         #
 #                                                                                   #
 # This file is part of PersianSPH                                                   #
 #                                                                                   #

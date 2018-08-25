@@ -30,3 +30,21 @@
 *.exe
 *.out
 *.app
+bin/*
+
+# ignore some directories
+.build/
+.lib/
+bin/
+
+# vim garbage
+*~
+.*.swp
+.*.swo
+
+# eclipse garbage
+.project
+.cproject
+.metadata
+.settings
+.pydevproject

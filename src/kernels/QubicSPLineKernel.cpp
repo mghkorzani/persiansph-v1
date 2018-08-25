@@ -1,6 +1,6 @@
 /***********************************************************************************
-* PersianSPH - A C++ library to simulate Mechanical Systems (solids, fluids        *
-*             and soils) using Smoothed Particle Hydrodynamics method              *
+* PersianSPH - Multi-Layered Environment to Simulate Multi-Physical Systems        *
+*                using Smoothed Particle Hydrodynamics method                      *
 *                                                                                  *
 * Copyright (C) 2018 Maziar Gholami Korzani                                        *
 *                                                                                  *
