@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo ""
+echo -e "\e[101mThis is the official way of cleaning PersianSPH built files\e[49m"
+echo ""
+
+cd .build
+make clean
+cd ..
+rm -rf .build
+rm -rf .lib
+rm -rf bin

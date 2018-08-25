@@ -1,0 +1,22 @@
+#!/bin/bash
+
+clear
+echo ""
+echo -e "\e[101mThis is the official way of building PersianSPH\e[49m"
+echo ""
+
+mkdir .build
+cd .build
+
+echo ""
+echo -e "\e[101mRunning cmake to build Makefile ...\e[49m"
+echo ""
+
+cmake ..
+
+echo ""
+echo -e "\e[101mmaking executables ...\e[49m"
+echo ""
+
+make
+cd ..
