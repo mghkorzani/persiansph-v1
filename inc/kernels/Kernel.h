@@ -32,7 +32,7 @@ public:
   // virtual destructor
   virtual ~Kernel();
   // initializer function for the required parameters of the kernel
-  virtual void Initialize (u_int dim, double h);
+  virtual void   Initialize (u_int dim, double h);
   virtual double KernelValue (const double & q) = 0;
   virtual double KernelFirstDerivative (const double & q) = 0;
   virtual double KernelSecondDerivative (const double & q) = 0;
