@@ -19,21 +19,22 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include"QubicSPLineKernel.h"
+#ifndef REGISTERER_H
+#define REGISTERER_H
 
-QubicSPLineKernel::QubicSPLineKernel()
+#include "QubicSplineKernel.h"
+#include "QuinticSplineKernel.h"
+
+class Registerer
 {
-  // Kernel::Kernel();
-}
-QubicSPLineKernel::~QubicSPLineKernel()
-{}
-void QubicSPLineKernel::Initialize (u_int dim, double h)
-{}
-double QubicSPLineKernel::KernelValue (const double & q)
-{return 10;}
-double QubicSPLineKernel::KernelFirstDerivative (const double & q)
-{return 110;}
-double QubicSPLineKernel::KernelSecondDerivative (const double & q)
-{return 1110;}
-double QubicSPLineKernel::KernelLaplacian (const double & q)
-{return 1110;}
+public:
+  // constructor
+  Registerer();
+  // virtual destructor
+  virtual ~Registerer();
+
+  QubicSplineKernel Reg_QubicSplineKernel;
+  QuinticSplineKernel Reg_QuinticSplineKernel;
+};
+
+#endif // REGISTERER_H

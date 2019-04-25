@@ -19,20 +19,22 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include <iostream>
-#include "Main.h"
+#include"QubicSplineKernel.h"
 
-using namespace std;
-
-int main() {
-  Main Maziar;
-
-  // Maziar.Kernel_Set();
-
-  cout<< Maziar._kernel->KernelValue(10) <<endl;
-  cout<< Maziar._kernel->KernelFirstDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelSecondDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelLaplacian(10) <<endl;
-  cout<< "End" <<endl;
-  return 0;
+QubicSplineKernel::QubicSplineKernel()
+{
+  std::cout<< "QubicSplineKernel constructor called" <<std::endl;
+  // Kernel::Kernel();
 }
+QubicSplineKernel::~QubicSplineKernel()
+{}
+void QubicSplineKernel::Initialize (u_int dim, double h)
+{}
+double QubicSplineKernel::KernelValue (const double & q)
+{return 10;}
+double QubicSplineKernel::KernelFirstDerivative (const double & q)
+{return 110;}
+double QubicSplineKernel::KernelSecondDerivative (const double & q)
+{return 1110;}
+double QubicSplineKernel::KernelLaplacian (const double & q)
+{return 1110;}

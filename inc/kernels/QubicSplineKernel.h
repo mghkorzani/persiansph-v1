@@ -22,16 +22,15 @@
 #ifndef QUBICSPLINEKERNEL_H
 #define QUBICSPLINEKERNEL_H
 
-#include"MathUtil.h"
 #include"Kernel.h"
 
-class QubicSPLineKernel : public Kernel
+class QubicSplineKernel : public Kernel
 {
 public:
   // constructor
-  QubicSPLineKernel();
+  QubicSplineKernel();
   // virtual destructor
-  virtual ~QubicSPLineKernel();
+  virtual ~QubicSplineKernel();
   // initializer function for the required parameters of the kernel
   virtual void Initialize (u_int dim, double h);
   virtual double KernelValue (const double & q);

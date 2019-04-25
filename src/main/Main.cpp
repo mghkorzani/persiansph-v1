@@ -19,20 +19,20 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include <iostream>
-#include "Main.h"
+#include"Main.h"
 
-using namespace std;
+Main::Main()
+{
+  _kernel = &_RO.Reg_QubicSplineKernel;
+}
 
-int main() {
-  Main Maziar;
+Main::~Main()
+{}
 
-  // Maziar.Kernel_Set();
-
-  cout<< Maziar._kernel->KernelValue(10) <<endl;
-  cout<< Maziar._kernel->KernelFirstDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelSecondDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelLaplacian(10) <<endl;
-  cout<< "End" <<endl;
-  return 0;
+void Main::Kernel_Set()
+{
+  std::cout<< "kernel set 1 called" <<std::endl;
+  // _kernel = &_RO.Reg_QubicSplineKernel;
+  _kernel = &_RO.Reg_QuinticSplineKernel;
+  std::cout<< "kernel set 2 called" <<std::endl;
 }

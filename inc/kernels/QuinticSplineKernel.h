@@ -19,20 +19,24 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include <iostream>
-#include "Main.h"
+#ifndef QUINTICSPLINEKERNEL_H
+#define QUINTICSPLINEKERNEL_H
 
-using namespace std;
+#include"Kernel.h"
 
-int main() {
-  Main Maziar;
+class QuinticSplineKernel : public Kernel
+{
+public:
+  // constructor
+  QuinticSplineKernel();
+  // virtual destructor
+  virtual ~QuinticSplineKernel();
+  // initializer function for the required parameters of the kernel
+  virtual void Initialize (u_int dim, double h);
+  virtual double KernelValue (const double & q);
+  virtual double KernelFirstDerivative (const double & q);
+  virtual double KernelSecondDerivative (const double & q);
+  virtual double KernelLaplacian (const double & q);
+};
 
-  // Maziar.Kernel_Set();
-
-  cout<< Maziar._kernel->KernelValue(10) <<endl;
-  cout<< Maziar._kernel->KernelFirstDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelSecondDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelLaplacian(10) <<endl;
-  cout<< "End" <<endl;
-  return 0;
-}
+#endif // QUINTICSPLINEKERNEL_H

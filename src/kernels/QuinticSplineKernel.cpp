@@ -1,4 +1,4 @@
-/***********************************************************************************
+/****************************************set c*******************************************
 * PersianSPH - Multi-Layered Environment to Simulate Multi-Physical Systems        *
 *                using Smoothed Particle Hydrodynamics method                      *
 *                                                                                  *
@@ -19,20 +19,22 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include <iostream>
-#include "Main.h"
+#include"QuinticSplineKernel.h"
 
-using namespace std;
-
-int main() {
-  Main Maziar;
-
-  // Maziar.Kernel_Set();
-
-  cout<< Maziar._kernel->KernelValue(10) <<endl;
-  cout<< Maziar._kernel->KernelFirstDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelSecondDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelLaplacian(10) <<endl;
-  cout<< "End" <<endl;
-  return 0;
+QuinticSplineKernel::QuinticSplineKernel()
+{
+  std::cout<< "QuinticSplineKernel constructor called" <<std::endl;
+  // Kernel::Kernel();
 }
+QuinticSplineKernel::~QuinticSplineKernel()
+{}
+void QuinticSplineKernel::Initialize (u_int dim, double h)
+{}
+double QuinticSplineKernel::KernelValue (const double & q)
+{return 20;}
+double QuinticSplineKernel::KernelFirstDerivative (const double & q)
+{return 220;}
+double QuinticSplineKernel::KernelSecondDerivative (const double & q)
+{return 2220;}
+double QuinticSplineKernel::KernelLaplacian (const double & q)
+{return 22220;}

@@ -19,20 +19,28 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
+#ifndef MAIN_H
+#define MAIN_H
+
 #include <iostream>
-#include "Main.h"
+#include "Registerer.h"
 
-using namespace std;
+class Main
+{
+public:
+  // constructor
+  Main();
+  // virtual destructor
+  virtual ~Main();
 
-int main() {
-  Main Maziar;
+  // set kernel
+  void Kernel_Set();
 
-  // Maziar.Kernel_Set();
+// private:
+  // add all registered objects to this class
+  Registerer _RO;
+  // main kernel to be published
+  Kernel * _kernel;
+};
 
-  cout<< Maziar._kernel->KernelValue(10) <<endl;
-  cout<< Maziar._kernel->KernelFirstDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelSecondDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelLaplacian(10) <<endl;
-  cout<< "End" <<endl;
-  return 0;
-}
+#endif // MAIN_H
