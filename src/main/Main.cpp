@@ -23,16 +23,19 @@
 
 Main::Main()
 {
-  _kernel = &_RO.Reg_QubicSplineKernel;
+  _kernel = _RO.Reg_Kernels[0];
 }
 
 Main::~Main()
 {}
 
-void Main::Kernel_Set()
+void Main::Kernel_Set(Kernels_Name kernel_name)
 {
-  std::cout<< "kernel set 1 called" <<std::endl;
-  // _kernel = &_RO.Reg_QubicSplineKernel;
-  _kernel = &_RO.Reg_QuinticSplineKernel;
-  std::cout<< "kernel set 2 called" <<std::endl;
+  _kernel = _RO.Reg_Kernels[kernel_name];
+
+    std::cout<< _kernel->KernelValue(10) <<std::endl;
+    std::cout<< _kernel->KernelFirstDerivative(10) <<std::endl;
+    std::cout<< _kernel->KernelSecondDerivative(10) <<std::endl;
+    std::cout<< _kernel->KernelLaplacian(10) <<std::endl;
+    std::cout<< "Kernel_Set is printing" <<std::endl;
 }

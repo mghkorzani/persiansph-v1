@@ -32,11 +32,10 @@ public:
   Main();
   // virtual destructor
   virtual ~Main();
-
   // set kernel
-  void Kernel_Set();
+  void Kernel_Set(Kernels_Name kernel_name);
 
-// private:
+private:
   // add all registered objects to this class
   Registerer _RO;
   // main kernel to be published

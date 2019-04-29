@@ -27,12 +27,7 @@ using namespace std;
 int main() {
   Main Maziar;
 
-  // Maziar.Kernel_Set();
+  Maziar.Kernel_Set(Quintic_Spline);
 
-  cout<< Maziar._kernel->KernelValue(10) <<endl;
-  cout<< Maziar._kernel->KernelFirstDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelSecondDerivative(10) <<endl;
-  cout<< Maziar._kernel->KernelLaplacian(10) <<endl;
-  cout<< "End" <<endl;
   return 0;
 }

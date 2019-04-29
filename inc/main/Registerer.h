@@ -22,6 +22,8 @@
 #ifndef REGISTERER_H
 #define REGISTERER_H
 
+#include <vector>
+
 #include "QubicSplineKernel.h"
 #include "QuinticSplineKernel.h"
 
@@ -33,8 +35,10 @@ public:
   // virtual destructor
   virtual ~Registerer();
 
-  QubicSplineKernel Reg_QubicSplineKernel;
-  QuinticSplineKernel Reg_QuinticSplineKernel;
+  std::vector<Kernel*> Reg_Kernels;
 };
+
+enum Kernels_Name
+        {Qubic_Spline = 0 , Quintic_Spline};
 
 #endif // REGISTERER_H

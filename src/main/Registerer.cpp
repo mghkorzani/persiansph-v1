@@ -22,7 +22,12 @@
 #include"Registerer.h"
 
 Registerer::Registerer()
-{}
+{
+  Reg_Kernels.push_back (new QubicSplineKernel);
+  Reg_Kernels.push_back (new QuinticSplineKernel);
+}
 
 Registerer::~Registerer()
-{}
+{
+  Reg_Kernels.clear();
+}
