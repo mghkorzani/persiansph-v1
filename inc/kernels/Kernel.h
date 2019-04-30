@@ -32,19 +32,24 @@ public:
   // virtual destructor
   virtual ~Kernel();
   // initializer function for the required parameters of the kernel
-  virtual void   Initialize (u_int dim, double h);
-  virtual double KernelValue (const double & q) = 0;
-  virtual double KernelFirstDerivative (const double & q) = 0;
-  virtual double KernelSecondDerivative (const double & q) = 0;
-  virtual double KernelLaplacian (const double & q) = 0;
+  virtual void   Initialize (u_int _dim, double _h);
+  virtual void   PrintName() = 0;
+  // required calculated value based on q
+  virtual double Value (const double & _q) = 0;
+  virtual double FirstDerivative (const double & _q) = 0;
+  virtual double SecondDerivative (const double & _q) = 0;
+  virtual double Laplacian (const double & _q) = 0;
+   // kernel width (based on compactness of a kernel) used for cell searching
+   // in linked-list approach
+  double width;
 
 protected:
   // dimension of kernel
-  u_int _dim;
+  u_int dim;
   // smoothing length
-  double _h;
+  double h;
   // constant coefficient of kernel based on dimension of kernel
-  double _c;
+  double C;
 };
 
 #endif // KERNEL_H

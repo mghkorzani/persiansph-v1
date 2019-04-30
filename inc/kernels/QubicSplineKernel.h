@@ -27,16 +27,12 @@
 class QubicSplineKernel : public Kernel
 {
 public:
-  // constructor
-  QubicSplineKernel();
-  // virtual destructor
-  virtual ~QubicSplineKernel();
-  // initializer function for the required parameters of the kernel
-  virtual void Initialize (u_int dim, double h);
-  virtual double KernelValue (const double & q);
-  virtual double KernelFirstDerivative (const double & q);
-  virtual double KernelSecondDerivative (const double & q);
-  virtual double KernelLaplacian (const double & q);
+  virtual void Initialize (u_int _dim, double _h);
+  virtual void PrintName();
+  virtual double Value (const double & _q);
+  virtual double FirstDerivative (const double & _q);
+  virtual double SecondDerivative (const double & _q);
+  virtual double Laplacian (const double & _q);
 };
 
 #endif // QUBICSPLINEKERNEL_H

@@ -21,20 +21,42 @@
 
 #include"QubicSplineKernel.h"
 
-QubicSplineKernel::QubicSplineKernel()
+void QubicSplineKernel::Initialize (u_int _dim, double _h)
 {
-  std::cout<< "QubicSplineKernel constructor called" <<std::endl;
-  // Kernel::Kernel();
+  Kernel::Initialize(_dim, _h);
+  dim == 2 ? C = 10.0/(7.0*h*h*PSPH::PI) : C = 1.0/(h*h*h*PSPH::PI);
 }
-QubicSplineKernel::~QubicSplineKernel()
-{}
-void QubicSplineKernel::Initialize (u_int dim, double h)
-{}
-double QubicSplineKernel::KernelValue (const double & q)
-{return 10;}
-double QubicSplineKernel::KernelFirstDerivative (const double & q)
-{return 110;}
-double QubicSplineKernel::KernelSecondDerivative (const double & q)
-{return 1110;}
-double QubicSplineKernel::KernelLaplacian (const double & q)
-{return 1110;}
+
+void QubicSplineKernel::PrintName()
+{
+  std::cout<<"Kernel Type:   Qubic Spline"<<std::endl;
+}
+
+double QubicSplineKernel::Value (const double & _q)
+{
+  if      (_q>=2.0) return 0.0;
+  else if (_q> 1.0) return C*(0.25*(2.0-_q)*(2.0-_q)*(2.0-_q));
+  else              return C*(1.0-1.5*_q*_q+0.75*_q*_q*_q);
+}
+
+double QubicSplineKernel::FirstDerivative (const double & _q)
+{
+  if      (_q>=2.0) return 0.0;
+  else if (_q> 1.0) return C/_q/h/h*(-0.75*(2.0-_q)*(2.0-_q));
+  else if (_q> 0.0) return C/_q/h/h*(-3.0*_q+2.25*_q*_q);
+  else              return C/h/h   *(-3.0+4.5*_q);
+}
+
+double QubicSplineKernel::SecondDerivative (const double & _q)
+{
+  if      (_q>=2.0) return 0.0;
+  else if (_q> 1.0) return C/h/h*(1.5*(2.0-_q));
+  else              return C/h/h*(-3.0+4.5*_q);
+}
+
+double QubicSplineKernel::Laplacian (const double & _q)
+{
+  if      (_q>=2.0) return 0.0;
+  else if (_q> 1.0) return C/h/h*(1.5*(2.0-_q) + (dim-1.0)/_q * (-0.75*(2.0-_q)*(2.0-_q)));
+  else              return C/h/h*(-3.0+4.5*_q  + (dim-1.0)/_q * (-3.0*_q+2.25*_q*_q));
+}

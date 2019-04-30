@@ -21,20 +21,21 @@
 
 #include"QuinticSplineKernel.h"
 
-QuinticSplineKernel::QuinticSplineKernel()
+void QuinticSplineKernel::Initialize (u_int _dim, double _h)
 {
-  std::cout<< "QuinticSplineKernel constructor called" <<std::endl;
-  // Kernel::Kernel();
+  Kernel::Initialize(_dim, _h);
 }
-QuinticSplineKernel::~QuinticSplineKernel()
-{}
-void QuinticSplineKernel::Initialize (u_int dim, double h)
-{}
-double QuinticSplineKernel::KernelValue (const double & q)
+
+void QuinticSplineKernel::PrintName()
+{
+  std::cout<<"Kernel Type:   Quintic Spline"<<std::endl;
+}
+
+double QuinticSplineKernel::Value (const double & _q)
 {return 20;}
-double QuinticSplineKernel::KernelFirstDerivative (const double & q)
+double QuinticSplineKernel::FirstDerivative (const double & _q)
 {return 220;}
-double QuinticSplineKernel::KernelSecondDerivative (const double & q)
+double QuinticSplineKernel::SecondDerivative (const double & _q)
 {return 2220;}
-double QuinticSplineKernel::KernelLaplacian (const double & q)
+double QuinticSplineKernel::Laplacian (const double & _q)
 {return 22220;}

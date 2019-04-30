@@ -28,7 +28,7 @@ typedef unsigned int u_int;
 
 namespace PSPH
 {
-  constexpr double _PI(3.1415926535897932384626433832795028841971693993751);
+  constexpr double PI(3.1415926535897932384626433832795028841971693993751);
 };
 
 #endif // MATHUTIL_H

@@ -33,13 +33,13 @@ public:
   // virtual destructor
   virtual ~Main();
   // set kernel
-  void Kernel_Set(Kernels_Name kernel_name);
+  void Kernel_Set(Kernels_Name _kernel_name);
 
 private:
   // add all registered objects to this class
-  Registerer _RO;
+  Registerer RO;
   // main kernel to be published
-  Kernel * _kernel;
+  Kernel * kernel;
 };
 
 #endif // MAIN_H

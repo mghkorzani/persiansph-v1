@@ -25,8 +25,8 @@ Kernel::Kernel()
 {}
 Kernel::~Kernel()
 {}
-void Kernel::Initialize (u_int dim, double h)
+void Kernel::Initialize (u_int _dim, double _h)
 {
-  _dim=dim;
-  _h=h;
+  dim = _dim;
+  h = _h;
 }

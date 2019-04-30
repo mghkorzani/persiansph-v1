@@ -1,4 +1,9 @@
-/***********************************************************************************
+/**********************************************  virtual void Initialize (u_int _dim, double _h);
+  virtual double KernelValue (const double & _q);
+  virtual double KernelFirstDerivative (const double & _q);
+  virtual double KernelSecondDerivative (const double & _q);
+  virtual double KernelLaplacian (const double & _q);
+*************************************
 * PersianSPH - Multi-Layered Environment to Simulate Multi-Physical Systems        *
 *                using Smoothed Particle Hydrodynamics method                      *
 *                                                                                  *
@@ -19,25 +24,20 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include"Main.h"
+#ifndef QUINTICSPLINEKERNEL_H
+#define QUINTICSPLINEKERNEL_H
 
-Main::Main()
+#include"Kernel.h"
+
+class QuinticKernel : public Kernel
 {
-  // default assignment of the first kernel in the registered kernel arrays
-  // to the kernel pointer
-  kernel = RO.Reg_Kernels[0];
-}
+public:
+  virtual void Initialize (u_int _dim, double _h);
+  virtual void PrintName();
+  virtual double Value (const double & _q);
+  virtual double FirstDerivative (const double & _q);
+  virtual double SecondDerivative (const double & _q);
+  virtual double Laplacian (const double & _q);
+};
 
-Main::~Main()
-{}
-
-void Main::Kernel_Set(Kernels_Name kernel_name)
-{
-  kernel = RO.Reg_Kernels[kernel_name];
-
-    std::cout<< kernel->Value(10) <<std::endl;
-    std::cout<< kernel->FirstDerivative(10) <<std::endl;
-    std::cout<< kernel->SecondDerivative(10) <<std::endl;
-    std::cout<< kernel->Laplacian(10) <<std::endl;
-    std::cout<< "Kernel_Set is printing" <<std::endl;
-}
+#endif // QUINTICSPLINEKERNEL_H

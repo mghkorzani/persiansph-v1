@@ -1,4 +1,4 @@
-/***********************************************************************************
+/****************************************set c*******************************************
 * PersianSPH - Multi-Layered Environment to Simulate Multi-Physical Systems        *
 *                using Smoothed Particle Hydrodynamics method                      *
 *                                                                                  *
@@ -19,25 +19,23 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include"Main.h"
+#include"QuinticKernel.h"
 
-Main::Main()
+void QuinticKernel::Initialize (u_int _dim, double _h)
 {
-  // default assignment of the first kernel in the registered kernel arrays
-  // to the kernel pointer
-  kernel = RO.Reg_Kernels[0];
+  Kernel::Initialize(_dim, _h);
 }
 
-Main::~Main()
-{}
-
-void Main::Kernel_Set(Kernels_Name kernel_name)
+void QuinticKernel::PrintName()
 {
-  kernel = RO.Reg_Kernels[kernel_name];
-
-    std::cout<< kernel->Value(10) <<std::endl;
-    std::cout<< kernel->FirstDerivative(10) <<std::endl;
-    std::cout<< kernel->SecondDerivative(10) <<std::endl;
-    std::cout<< kernel->Laplacian(10) <<std::endl;
-    std::cout<< "Kernel_Set is printing" <<std::endl;
+  std::cout<<"Kernel Type:   Quintic"<<std::endl;
 }
+
+double QuinticKernel::Value (const double & _q)
+{return 20;}
+double QuinticKernel::FirstDerivative (const double & _q)
+{return 220;}
+double QuinticKernel::SecondDerivative (const double & _q)
+{return 2220;}
+double QuinticKernel::Laplacian (const double & _q)
+{return 22220;}

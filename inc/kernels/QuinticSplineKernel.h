@@ -1,4 +1,9 @@
-/***********************************************************************************
+/**********************************************  virtual void Initialize (u_int _dim, double _h);
+  virtual double KernelValue (const double & _q);
+  virtual double KernelFirstDerivative (const double & _q);
+  virtual double KernelSecondDerivative (const double & _q);
+  virtual double KernelLaplacian (const double & _q);
+*************************************
 * PersianSPH - Multi-Layered Environment to Simulate Multi-Physical Systems        *
 *                using Smoothed Particle Hydrodynamics method                      *
 *                                                                                  *
@@ -27,16 +32,12 @@
 class QuinticSplineKernel : public Kernel
 {
 public:
-  // constructor
-  QuinticSplineKernel();
-  // virtual destructor
-  virtual ~QuinticSplineKernel();
-  // initializer function for the required parameters of the kernel
-  virtual void Initialize (u_int dim, double h);
-  virtual double KernelValue (const double & q);
-  virtual double KernelFirstDerivative (const double & q);
-  virtual double KernelSecondDerivative (const double & q);
-  virtual double KernelLaplacian (const double & q);
+  virtual void Initialize (u_int _dim, double _h);
+  virtual void PrintName();
+  virtual double Value (const double & _q);
+  virtual double FirstDerivative (const double & _q);
+  virtual double SecondDerivative (const double & _q);
+  virtual double Laplacian (const double & _q);
 };
 
 #endif // QUINTICSPLINEKERNEL_H
