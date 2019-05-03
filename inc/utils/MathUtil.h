@@ -25,6 +25,11 @@
 #include <iostream>
 #include <cmath>
 
+// Blitz++
+#include <blitz/tinyvec2.h>
+// #include <blitz/tinymat2.h>
+
+
 typedef unsigned int u_int;
 
 namespace PSPH

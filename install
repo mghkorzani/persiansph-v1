@@ -8,7 +8,8 @@ sudo apt-get install build-essential \
 git \
 libblas-dev \
 liblapack-dev \
-libgsl-dev
+libgsl-dev \
+libblitz0-dev
 
 echo ""
 echo -e "\e[101mCloning PersianSPH from GitHub\e[49m"

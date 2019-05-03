@@ -35,6 +35,16 @@ else(GSL_FOUND)
   SET (MISSING " ${MISSING} GSL Library ")
 endif(GSL_FOUND)
 
+# searching for BLITZ++ library
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(BLITZ REQUIRED blitz>=0.1)
+if(BLITZ_FOUND)
+	INCLUDE_DIRECTORIES (${BLITZ_INCLUDEDIR})
+	SET (LIBS ${LIBS} ${BLITZ_LIBRARIES})
+else(BLITZ_FOUND)
+  SET (MISSING " ${MISSING} BLITZ++ Library ")
+endif(BLITZ_FOUND)
+
 # report the missing libraries name
 if(MISSING)
 	MESSAGE("!!!!!!!!!!!!!!!!!!!!!!!! Missing libraries =${MISSING} !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
