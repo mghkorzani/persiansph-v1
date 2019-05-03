@@ -21,6 +21,11 @@
 
 #include"QubicSplineKernel.h"
 
+QubicSplineKernel::QubicSplineKernel()
+{
+  width = 2.0;
+}
+
 void QubicSplineKernel::Initialize (u_int _dim, double _h)
 {
   Kernel::Initialize(_dim, _h);
@@ -35,22 +40,21 @@ void QubicSplineKernel::PrintName()
 double QubicSplineKernel::Value (const double & _q)
 {
   if      (_q>=2.0) return 0.0;
-  else if (_q> 1.0) return C*(0.25*(2.0-_q)*(2.0-_q)*(2.0-_q));
+  else if (_q>=1.0) return C*0.25*pow(2.0-_q,3);
   else              return C*(1.0-1.5*_q*_q+0.75*_q*_q*_q);
 }
 
 double QubicSplineKernel::FirstDerivative (const double & _q)
 {
   if      (_q>=2.0) return 0.0;
-  else if (_q> 1.0) return C/_q/h/h*(-0.75*(2.0-_q)*(2.0-_q));
-  else if (_q> 0.0) return C/_q/h/h*(-3.0*_q+2.25*_q*_q);
-  else              return C/h/h   *(-3.0+4.5*_q);
+  else if (_q> 1.0) return C/h*-0.75*pow(2.0-_q,2);
+  else              return C/h*(-3.0*_q+2.25*_q*_q);
 }
 
 double QubicSplineKernel::SecondDerivative (const double & _q)
 {
   if      (_q>=2.0) return 0.0;
-  else if (_q> 1.0) return C/h/h*(1.5*(2.0-_q));
+  else if (_q> 1.0) return C/h/h*1.5*(2.0-_q);
   else              return C/h/h*(-3.0+4.5*_q);
 }
 

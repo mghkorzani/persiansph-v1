@@ -19,23 +19,23 @@
 # PersianSPH; if not, see <http://www.gnu.org/licenses/>                            #
 #####################################################################################
 
-CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
+SET (LIBS     ${LIBS})
+SET (MISSING "")
 
-PROJECT (PersianSPH)
+# build a static library from all cpp files in PERSIANSPH_CPP_FILES variable
+add_library(persiansph ${PERSIANSPH_CPP_FILES})
+SET (LIBS ${LIBS} persiansph)
 
-# move all library and executable files to "bin" and ".lib" directories
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/.lib)
-SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
-mark_as_advanced(LIBRARY_OUTPUT_PATH EXECUTABLE_OUTPUT_PATH)
+# searching for GSL library
+find_package(GSL REQUIRED)
+if(GSL_FOUND)
+	INCLUDE_DIRECTORIES (${GSL_INCLUDE_DIRS})
+	SET (LIBS ${LIBS} ${GSL_LIBRARIES})
+else(GSL_FOUND)
+  SET (MISSING " ${MISSING} GSL Library ")
+endif(GSL_FOUND)
 
-# include cmake files for building
-INCLUDE (${CMAKE_SOURCE_DIR}/cmake/compile_options.cmake)
-INCLUDE (${CMAKE_SOURCE_DIR}/cmake/path_finder.cmake)
-INCLUDE (${CMAKE_SOURCE_DIR}/cmake/find_packages.cmake)
-
-# build executable files and link them to libraries
-FOREACH(var ${EXECUTABLE_FILES})
-	GET_FILENAME_COMPONENT(file_name ${var} NAME_WE)
-  ADD_EXECUTABLE        (${file_name} ${var})
-	target_link_libraries(${file_name} ${LIBS})
-ENDFOREACH(var)
+# report the missing libraries name
+if(MISSING)
+	MESSAGE("!!!!!!!!!!!!!!!!!!!!!!!! Missing libraries =${MISSING} !!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+endif(MISSING)

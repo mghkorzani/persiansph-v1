@@ -35,7 +35,7 @@ public:
   // set kernel
   void Kernel_Set(Kernels_Name _kernel_name);
 
-private:
+protected:
   // add all registered objects to this class
   Registerer RO;
   // main kernel to be published

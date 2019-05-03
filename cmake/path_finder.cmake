@@ -19,33 +19,6 @@
 # PersianSPH; if not, see <http://www.gnu.org/licenses/>                            #
 #####################################################################################
 
-# options to get user-defined flags for compiler
-OPTION(A_MAKE_VERBOSE       "Show additional messages during compilation/linking?" OFF)
-OPTION(A_MAKE_ALL_WARNINGS  "Make with all warnings (-Wall)"                       ON )
-OPTION(A_MAKE_DEBUG_SYMBOLS "Make with debug symbols (-g)"                         OFF)
-OPTION(A_MAKE_OPTIMIZED     "Make optimized (-O3)"                                 ON )
-
-IF(A_MAKE_VERBOSE)
-	SET (CMAKE_VERBOSE_MAKEFILE TRUE)
-ENDIF(A_MAKE_VERBOSE)
-
-IF(A_MAKE_ALL_WARNINGS)
-	ADD_DEFINITIONS (-Wall)
-ENDIF(A_MAKE_ALL_WARNINGS)
-
-IF(A_MAKE_DEBUG_SYMBOLS)
-	ADD_DEFINITIONS (-g)
-ENDIF(A_MAKE_DEBUG_SYMBOLS)
-
-IF(A_MAKE_OPTIMIZED)
-	ADD_DEFINITIONS (-O3)
-ENDIF(A_MAKE_OPTIMIZED)
-
-# add extra flags for compiler
-ADD_DEFINITIONS(-fmessage-length=0)
-ADD_DEFINITIONS(-std=c++11)
-ADD_DEFINITIONS(-fpermissive)
-
 # macro to search throgh directories and subdirectories and
 # returns a list of directories consisting files with the asked extention
 MACRO(directory_list return_list file_extension)
@@ -58,3 +31,13 @@ MACRO(directory_list return_list file_extension)
     LIST(REMOVE_DUPLICATES dir_list)
     SET(${return_list} ${dir_list})
 ENDMACRO(directory_list)
+
+# look up header file directories list and include them
+directory_list(HEADERS_LIST "h")
+include_directories(${HEADERS_LIST})
+
+# includ all cpp files in the "src" directory to build a static library
+FILE(GLOB_RECURSE PERSIANSPH_CPP_FILES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+
+# include all cpp files in the "infile" directory to build executable files in the "bin" directory
+FILE(GLOB_RECURSE EXECUTABLE_FILES ${CMAKE_SOURCE_DIR}/infile/*.cpp)

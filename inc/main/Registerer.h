@@ -26,6 +26,7 @@
 
 #include "QubicSplineKernel.h"
 #include "QuinticSplineKernel.h"
+#include "QuinticKernel.h"
 
 class Registerer
 {
@@ -39,6 +40,6 @@ public:
 };
 
 enum Kernels_Name
-        {Qubic_Spline = 0 , Quintic_Spline};
+        {Qubic_Spline = 0 , Quintic_Spline , Quintic};
 
 #endif // REGISTERER_H

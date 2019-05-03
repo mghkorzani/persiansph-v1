@@ -27,6 +27,7 @@
 class QubicSplineKernel : public Kernel
 {
 public:
+  QubicSplineKernel();
   virtual void Initialize (u_int _dim, double _h);
   virtual void PrintName();
   virtual double Value (const double & _q);

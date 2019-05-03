@@ -27,6 +27,8 @@ using namespace std;
 int main() {
   Main Maziar;
 
+  Maziar.Kernel_Set(Qubic_Spline);
+  Maziar.Kernel_Set(Quintic);
   Maziar.Kernel_Set(Quintic_Spline);
 
   return 0;

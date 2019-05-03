@@ -21,9 +21,15 @@
 
 #include"QuinticSplineKernel.h"
 
+QuinticSplineKernel::QuinticSplineKernel()
+{
+  width = 3.0;
+}
+
 void QuinticSplineKernel::Initialize (u_int _dim, double _h)
 {
   Kernel::Initialize(_dim, _h);
+  dim ==2 ? C = 7.0/(478.0*h*h*PSPH::PI) : C = 1.0/(120.0*h*h*h*PSPH::PI);
 }
 
 void QuinticSplineKernel::PrintName()
@@ -32,10 +38,34 @@ void QuinticSplineKernel::PrintName()
 }
 
 double QuinticSplineKernel::Value (const double & _q)
-{return 20;}
+{
+  if      (_q>=3.0) return 0.0;
+  else if (_q> 2.0)	return C*(pow(3.0-_q,5.0));
+  else if (_q> 1.0)	return C*(pow(3.0-_q,5.0)-6.0*pow(2.0-_q,5.0));
+  else              return C*(pow(3.0-_q,5.0)-6.0*pow(2.0-_q,5.0)+15.0*pow(1.0-_q,5.0));
+}
+
 double QuinticSplineKernel::FirstDerivative (const double & _q)
-{return 220;}
+{
+  if      (_q>=3.0) return 0.0;
+  else if (_q> 2.0)	return C/_q/h/h*(-5.0*pow(3.0-_q,4.0));
+  else if (_q> 1.0)	return C/_q/h/h*(-5.0*pow(3.0-_q,4.0)+30.0*pow(2.0-_q,4.0));
+  else if (_q> 0.0)	return C/_q/h/h*(-5.0*pow(3.0-_q,4.0)+30.0*pow(2.0-_q,4.0)-75.0*pow(1.0-_q,4.0));
+  else              return C/h/h  *(20.0*pow(3.0-_q,3.0)-120.0*pow(2.0-_q,3.0)+300.0*pow(1.0-_q,3.0));
+}
+
 double QuinticSplineKernel::SecondDerivative (const double & _q)
-{return 2220;}
+{
+  if      (_q>=3.0) return 0.0;
+  else if (_q> 2.0)	return C/h/h*(20.0*pow(3.0-_q,3.0));
+  else if (_q> 1.0)	return C/h/h*(20.0*pow(3.0-_q,3.0)-120.0*pow(2.0-_q,3.0));
+  else              return C/h/h*(20.0*pow(3.0-_q,3.0)-120.0*pow(2.0-_q,3.0)+300.0*pow(1.0-_q,3.0));
+}
+
 double QuinticSplineKernel::Laplacian (const double & _q)
-{return 22220;}
+{
+  if      (_q>=3.0) return 0.0;
+  else if (_q> 2.0) return C/h/h*((20.0*pow((3.0-_q),3.0)) + (dim-1.0)/_q*(-5.0*pow((3.0-_q),4.0)));
+  else if (_q> 1.0) return C/h/h*((20.0*pow((3.0-_q),3.0)-120.0*pow((2-_q),3.0)) + (dim-1.0)/_q*(-5.0*pow((3.0-_q),4.0)+30.0*pow((2.0-_q),4.0)));
+  else              return C/h/h*((20.0*pow((3.0-_q),3.0)-120.0*pow((2-_q),3.0)+300.0*pow((1-_q),3.0)) + (dim-1.0)/_q*(-5.0*pow((3.0-_q),4.0)+30.0*pow((2.0-_q),4.0)-75.0*pow((1.0-_q),4.0)));
+}

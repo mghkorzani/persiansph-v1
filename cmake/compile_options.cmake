@@ -19,23 +19,30 @@
 # PersianSPH; if not, see <http://www.gnu.org/licenses/>                            #
 #####################################################################################
 
-CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
+# options to get user-defined flags for compiler
+OPTION(A_MAKE_VERBOSE       "Show additional messages during compilation/linking?" OFF)
+OPTION(A_MAKE_ALL_WARNINGS  "Make with all warnings (-Wall)"                       ON )
+OPTION(A_MAKE_DEBUG_SYMBOLS "Make with debug symbols (-g)"                         OFF)
+OPTION(A_MAKE_OPTIMIZED     "Make optimized (-O3)"                                 ON )
 
-PROJECT (PersianSPH)
+IF(A_MAKE_VERBOSE)
+	SET (CMAKE_VERBOSE_MAKEFILE TRUE)
+ENDIF(A_MAKE_VERBOSE)
 
-# move all library and executable files to "bin" and ".lib" directories
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/.lib)
-SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
-mark_as_advanced(LIBRARY_OUTPUT_PATH EXECUTABLE_OUTPUT_PATH)
+IF(A_MAKE_ALL_WARNINGS)
+	ADD_DEFINITIONS (-Wall)
+ENDIF(A_MAKE_ALL_WARNINGS)
 
-# include cmake files for building
-INCLUDE (${CMAKE_SOURCE_DIR}/cmake/compile_options.cmake)
-INCLUDE (${CMAKE_SOURCE_DIR}/cmake/path_finder.cmake)
-INCLUDE (${CMAKE_SOURCE_DIR}/cmake/find_packages.cmake)
+IF(A_MAKE_DEBUG_SYMBOLS)
+	ADD_DEFINITIONS (-g)
+ENDIF(A_MAKE_DEBUG_SYMBOLS)
 
-# build executable files and link them to libraries
-FOREACH(var ${EXECUTABLE_FILES})
-	GET_FILENAME_COMPONENT(file_name ${var} NAME_WE)
-  ADD_EXECUTABLE        (${file_name} ${var})
-	target_link_libraries(${file_name} ${LIBS})
-ENDFOREACH(var)
+IF(A_MAKE_OPTIMIZED)
+	ADD_DEFINITIONS (-O3)
+ENDIF(A_MAKE_OPTIMIZED)
+
+# add extra flags for compiler
+ADD_DEFINITIONS(-fmessage-length=0)
+ADD_DEFINITIONS(-fpermissive)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)

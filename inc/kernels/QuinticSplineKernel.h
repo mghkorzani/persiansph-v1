@@ -32,6 +32,7 @@
 class QuinticSplineKernel : public Kernel
 {
 public:
+  QuinticSplineKernel();
   virtual void Initialize (u_int _dim, double _h);
   virtual void PrintName();
   virtual double Value (const double & _q);

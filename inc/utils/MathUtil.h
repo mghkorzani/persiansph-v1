@@ -23,6 +23,7 @@
 #define MATHUTIL_H
 
 #include <iostream>
+#include <cmath>
 
 typedef unsigned int u_int;
 

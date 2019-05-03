@@ -35,9 +35,17 @@ void Main::Kernel_Set(Kernels_Name kernel_name)
 {
   kernel = RO.Reg_Kernels[kernel_name];
 
-    std::cout<< kernel->Value(10) <<std::endl;
-    std::cout<< kernel->FirstDerivative(10) <<std::endl;
-    std::cout<< kernel->SecondDerivative(10) <<std::endl;
-    std::cout<< kernel->Laplacian(10) <<std::endl;
-    std::cout<< "Kernel_Set is printing" <<std::endl;
+  kernel->Initialize(3,1.0);
+  double i = 0.0;
+  while (i<=kernel->width+0.1)
+  {
+    std::cout<< i <<" , ";
+    std::cout<< kernel->Value(i) <<" , ";
+    std::cout<< kernel->FirstDerivative(i) <<" , ";
+    std::cout<< kernel->SecondDerivative(i) <<" , ";
+    std::cout<< kernel->Laplacian(i) <<std::endl;
+    i = i + 0.1;
+  }
+  std::cout<< std::endl;
+
 }

@@ -24,14 +24,15 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#ifndef QUINTICSPLINEKERNEL_H
-#define QUINTICSPLINEKERNEL_H
+#ifndef QUINTICKERNEL_H
+#define QUINTICKERNEL_H
 
 #include"Kernel.h"
 
 class QuinticKernel : public Kernel
 {
 public:
+  QuinticKernel();
   virtual void Initialize (u_int _dim, double _h);
   virtual void PrintName();
   virtual double Value (const double & _q);
@@ -40,4 +41,4 @@ public:
   virtual double Laplacian (const double & _q);
 };
 
-#endif // QUINTICSPLINEKERNEL_H
+#endif // QUINTICKERNEL_H
