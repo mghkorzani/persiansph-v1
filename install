@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo ""
+echo -e "\e[101mInstalling prerequisites packages\e[49m"
+echo ""
+
+sudo apt-get install build-essential \
+git \
+libblas-dev \
+liblapack-dev \
+libgsl-dev
+
+echo ""
+echo -e "\e[101mCloning PersianSPH from GitHub\e[49m"
+echo ""
+
+git clone https://github.com/mghkorzani/persiansph.git
+
+./build
