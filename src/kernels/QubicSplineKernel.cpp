@@ -51,6 +51,12 @@ double QubicSplineKernel::FirstDerivative (const double & _q)
   else              return C/h*(-3.0*_q+2.25*gsl_pow_2(_q));
 }
 
+CVec   QubicSplineKernel::Gradient (const double & _q, const double & _r, const CVec & _x)
+{
+  if (_q>0.0) return (FirstDerivative (_q)/_r)*_x;
+  else        return CVec::Constant(0.0);
+}
+
 double QubicSplineKernel::SecondDerivative (const double & _q)
 {
   if      (_q>=2.0) return 0.0;

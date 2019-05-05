@@ -32,6 +32,7 @@ public:
   virtual void PrintName();
   virtual double Value (const double & _q);
   virtual double FirstDerivative (const double & _q);
+  virtual CVec   Gradient (const double & _q, const double & _r, const CVec & _x);
   virtual double SecondDerivative (const double & _q);
   virtual double Laplacian (const double & _q);
 };

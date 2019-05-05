@@ -49,6 +49,12 @@ double QuinticKernel::FirstDerivative (const double & _q)
   else          return -C/h*gsl_pow_3(1.0-_q/2.0)*(5.0*_q+2.0);
 }
 
+CVec   QuinticKernel::Gradient (const double & _q, const double & _r, const CVec & _x)
+{
+  if (_q>0.0) return (FirstDerivative (_q)/_r)*_x;
+  else        return CVec::Constant(0.0);
+}
+
 double QuinticKernel::SecondDerivative (const double & _q)
 {
   if (_q>=2.0)  return 0.0;

@@ -53,6 +53,12 @@ double QuinticSplineKernel::FirstDerivative (const double & _q)
   else              return C/h*-5.0*(gsl_pow_4(3.0-_q)-6.0*gsl_pow_4(2.0-_q)+15.0*gsl_pow_4(1.0-_q));
 }
 
+CVec   QuinticSplineKernel::Gradient (const double & _q, const double & _r, const CVec & _x)
+{
+  if (_q>0.0) return (FirstDerivative (_q)/_r)*_x;
+  else        return CVec::Constant(0.0);
+}
+
 double QuinticSplineKernel::SecondDerivative (const double & _q)
 {
   if      (_q>=3.0) return 0.0;

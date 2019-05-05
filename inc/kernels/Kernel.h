@@ -37,6 +37,7 @@ public:
   // required calculated value based on q
   virtual double Value (const double & _q) = 0;
   virtual double FirstDerivative (const double & _q) = 0;
+  virtual CVec   Gradient (const double & _q, const double & _r, const CVec & _x) = 0;
   virtual double SecondDerivative (const double & _q) = 0;
   virtual double Laplacian (const double & _q) = 0;
    // kernel width (based on compactness of a kernel) used for cell searching
