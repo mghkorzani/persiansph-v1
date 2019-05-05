@@ -23,9 +23,12 @@
 
 Kernel::Kernel()
 {}
+
 Kernel::~Kernel()
 {}
-void Kernel::Initialize (u_int _dim, double _h)
+  
+inline void
+Kernel::Initialize (u_int _dim, double _h)
 {
   dim = _dim;
   h = _h;

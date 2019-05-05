@@ -31,7 +31,8 @@ Main::Main()
 Main::~Main()
 {}
 
-void Main::Kernel_Set(Kernels_Name kernel_name)
+inline void
+Main::Kernel_Set(Kernels_Name kernel_name)
 {
   kernel = RO.Reg_Kernels[kernel_name];
 

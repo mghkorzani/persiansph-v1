@@ -26,18 +26,21 @@ QuinticSplineKernel::QuinticSplineKernel()
   width = 3.0;
 }
 
-void QuinticSplineKernel::Initialize (u_int _dim, double _h)
+inline void
+QuinticSplineKernel::Initialize (u_int _dim, double _h)
 {
   Kernel::Initialize(_dim, _h);
   dim ==2 ? C = 7.0/(478.0*gsl_pow_2(h)*M_PI) : C = 1.0/(120.0*gsl_pow_3(h)*M_PI);
 }
 
-void QuinticSplineKernel::PrintName()
+inline void
+QuinticSplineKernel::PrintName()
 {
   std::cout<<"Kernel Type:   Quintic Spline"<<std::endl;
 }
 
-double QuinticSplineKernel::Value (const double & _q)
+inline double
+QuinticSplineKernel::Value (const double & _q)
 {
   if      (_q>=3.0) return 0.0;
   else if (_q>=2.0)	return C* gsl_pow_5(3.0-_q);
@@ -45,7 +48,8 @@ double QuinticSplineKernel::Value (const double & _q)
   else              return C*(gsl_pow_5(3.0-_q)-6.0*gsl_pow_5(2.0-_q)+15.0*gsl_pow_5(1.0-_q));
 }
 
-double QuinticSplineKernel::FirstDerivative (const double & _q)
+inline double
+QuinticSplineKernel::FirstDerivative (const double & _q)
 {
   if      (_q>=3.0) return 0.0;
   else if (_q>=2.0)	return C/h*-5.0* gsl_pow_4(3.0-_q);
@@ -53,13 +57,15 @@ double QuinticSplineKernel::FirstDerivative (const double & _q)
   else              return C/h*-5.0*(gsl_pow_4(3.0-_q)-6.0*gsl_pow_4(2.0-_q)+15.0*gsl_pow_4(1.0-_q));
 }
 
-CVec   QuinticSplineKernel::Gradient (const double & _q, const double & _r, const CVec & _x)
+inline CVec
+QuinticSplineKernel::Gradient (const double & _q, const double & _r, const CVec & _x)
 {
   if (_q>0.0) return (FirstDerivative (_q)/_r)*_x;
   else        return CVec::Constant(0.0);
 }
 
-double QuinticSplineKernel::SecondDerivative (const double & _q)
+inline double
+QuinticSplineKernel::SecondDerivative (const double & _q)
 {
   if      (_q>=3.0) return 0.0;
   else if (_q>=2.0)	return C/gsl_pow_2(h)*20.0* gsl_pow_3(3.0-_q);
@@ -67,7 +73,8 @@ double QuinticSplineKernel::SecondDerivative (const double & _q)
   else              return C/gsl_pow_2(h)*20.0*(gsl_pow_3(3.0-_q)-6.0*gsl_pow_3(2.0-_q)+15.0*gsl_pow_3(1.0-_q));
 }
 
-double QuinticSplineKernel::Laplacian (const double & _q)
+inline double
+QuinticSplineKernel::Laplacian (const double & _q)
 {
   return SecondDerivative(_q) - (dim-1.0)*FirstDerivative(_q);
 }
