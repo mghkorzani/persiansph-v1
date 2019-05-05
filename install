@@ -8,8 +8,10 @@ sudo apt-get install build-essential \
 git \
 libblas-dev \
 liblapack-dev \
-libgsl-dev \
-libblitz0-dev
+libgsl-dev
+
+# I should replace here with a correct stable link and move it to /usr
+hg clone https://bitbucket.org/eigen/eigen/
 
 echo ""
 echo -e "\e[101mCloning PersianSPH from GitHub\e[49m"

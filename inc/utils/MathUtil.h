@@ -24,13 +24,15 @@
 
 #include <iostream>
 #include <cmath>
+#include <Eigen/Dense>
 
-// Blitz++
-#include <blitz/tinyvec2.h>
-// #include <blitz/tinymat2.h>
-
-
-typedef unsigned int u_int;
+typedef unsigned int uint;
+/** 3x3 Matrix. */
+typedef Eigen::Matrix3d Mat;
+/** 3x1 Vector. */
+typedef Eigen::Vector3d CVec;
+/** 3x1 Vector. */
+typedef Eigen::RowVector3d RVec;
 
 namespace PSPH
 {

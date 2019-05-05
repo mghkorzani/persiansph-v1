@@ -18,5 +18,5 @@ echo ""
 echo -e "\e[101mmaking executables ...\e[49m"
 echo ""
 
-make
+make -j4
 cd ..
