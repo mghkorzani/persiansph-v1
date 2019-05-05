@@ -29,7 +29,7 @@ QuinticSplineKernel::QuinticSplineKernel()
 void QuinticSplineKernel::Initialize (u_int _dim, double _h)
 {
   Kernel::Initialize(_dim, _h);
-  dim ==2 ? C = 7.0/(478.0*h*h*PSPH::PI) : C = 1.0/(120.0*h*h*h*PSPH::PI);
+  dim ==2 ? C = 7.0/(478.0*gsl_pow_2(h)*M_PI) : C = 1.0/(120.0*gsl_pow_3(h)*M_PI);
 }
 
 void QuinticSplineKernel::PrintName()
@@ -40,32 +40,28 @@ void QuinticSplineKernel::PrintName()
 double QuinticSplineKernel::Value (const double & _q)
 {
   if      (_q>=3.0) return 0.0;
-  else if (_q> 2.0)	return C*(pow(3.0-_q,5.0));
-  else if (_q> 1.0)	return C*(pow(3.0-_q,5.0)-6.0*pow(2.0-_q,5.0));
-  else              return C*(pow(3.0-_q,5.0)-6.0*pow(2.0-_q,5.0)+15.0*pow(1.0-_q,5.0));
+  else if (_q>=2.0)	return C* gsl_pow_5(3.0-_q);
+  else if (_q>=1.0)	return C*(gsl_pow_5(3.0-_q)-6.0*gsl_pow_5(2.0-_q));
+  else              return C*(gsl_pow_5(3.0-_q)-6.0*gsl_pow_5(2.0-_q)+15.0*gsl_pow_5(1.0-_q));
 }
 
 double QuinticSplineKernel::FirstDerivative (const double & _q)
 {
   if      (_q>=3.0) return 0.0;
-  else if (_q> 2.0)	return C/_q/h/h*(-5.0*pow(3.0-_q,4.0));
-  else if (_q> 1.0)	return C/_q/h/h*(-5.0*pow(3.0-_q,4.0)+30.0*pow(2.0-_q,4.0));
-  else if (_q> 0.0)	return C/_q/h/h*(-5.0*pow(3.0-_q,4.0)+30.0*pow(2.0-_q,4.0)-75.0*pow(1.0-_q,4.0));
-  else              return C/h/h  *(20.0*pow(3.0-_q,3.0)-120.0*pow(2.0-_q,3.0)+300.0*pow(1.0-_q,3.0));
+  else if (_q>=2.0)	return C/h*-5.0* gsl_pow_4(3.0-_q);
+  else if (_q>=1.0)	return C/h*-5.0*(gsl_pow_4(3.0-_q)-6.0*gsl_pow_4(2.0-_q));
+  else              return C/h*-5.0*(gsl_pow_4(3.0-_q)-6.0*gsl_pow_4(2.0-_q)+15.0*gsl_pow_4(1.0-_q));
 }
 
 double QuinticSplineKernel::SecondDerivative (const double & _q)
 {
   if      (_q>=3.0) return 0.0;
-  else if (_q> 2.0)	return C/h/h*(20.0*pow(3.0-_q,3.0));
-  else if (_q> 1.0)	return C/h/h*(20.0*pow(3.0-_q,3.0)-120.0*pow(2.0-_q,3.0));
-  else              return C/h/h*(20.0*pow(3.0-_q,3.0)-120.0*pow(2.0-_q,3.0)+300.0*pow(1.0-_q,3.0));
+  else if (_q>=2.0)	return C/gsl_pow_2(h)*20.0* gsl_pow_3(3.0-_q);
+  else if (_q>=1.0)	return C/gsl_pow_2(h)*20.0*(gsl_pow_3(3.0-_q)-6.0*gsl_pow_3(2.0-_q));
+  else              return C/gsl_pow_2(h)*20.0*(gsl_pow_3(3.0-_q)-6.0*gsl_pow_3(2.0-_q)+15.0*gsl_pow_3(1.0-_q));
 }
 
 double QuinticSplineKernel::Laplacian (const double & _q)
 {
-  if      (_q>=3.0) return 0.0;
-  else if (_q> 2.0) return C/h/h*((20.0*pow((3.0-_q),3.0)) + (dim-1.0)/_q*(-5.0*pow((3.0-_q),4.0)));
-  else if (_q> 1.0) return C/h/h*((20.0*pow((3.0-_q),3.0)-120.0*pow((2-_q),3.0)) + (dim-1.0)/_q*(-5.0*pow((3.0-_q),4.0)+30.0*pow((2.0-_q),4.0)));
-  else              return C/h/h*((20.0*pow((3.0-_q),3.0)-120.0*pow((2-_q),3.0)+300.0*pow((1-_q),3.0)) + (dim-1.0)/_q*(-5.0*pow((3.0-_q),4.0)+30.0*pow((2.0-_q),4.0)-75.0*pow((1.0-_q),4.0)));
+  return SecondDerivative(_q) - (dim-1.0)*FirstDerivative(_q);
 }

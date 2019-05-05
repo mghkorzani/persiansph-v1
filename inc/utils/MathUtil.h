@@ -22,9 +22,15 @@
 #ifndef MATHUTIL_H
 #define MATHUTIL_H
 
+// standard c++ libraries
 #include <iostream>
 #include <cmath>
+
+// Eigen library for matrices and vectors
 #include <Eigen/Dense>
+
+// GSL library for math calculations
+#include <gsl/gsl_math.h>
 
 typedef unsigned int uint;
 /** 3x3 Matrix. */
@@ -33,10 +39,5 @@ typedef Eigen::Matrix3d Mat;
 typedef Eigen::Vector3d CVec;
 /** 3x1 Vector. */
 typedef Eigen::RowVector3d RVec;
-
-namespace PSPH
-{
-  constexpr double PI(3.1415926535897932384626433832795028841971693993751);
-};
 
 #endif // MATHUTIL_H

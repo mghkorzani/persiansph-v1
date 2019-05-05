@@ -29,7 +29,7 @@ QuinticKernel::QuinticKernel()
 void QuinticKernel::Initialize (u_int _dim, double _h)
 {
   Kernel::Initialize(_dim, _h);
-  dim ==2 ? C = 7.0/(4.0*h*h*PSPH::PI) : C = 7.0/(8.0*h*h*h*PSPH::PI);
+  dim ==2 ? C = 7.0/(4.0*gsl_pow_2(h)*M_PI) : C = 7.0/(8.0*gsl_pow_3(h)*M_PI);
 }
 
 void QuinticKernel::PrintName()
@@ -39,25 +39,23 @@ void QuinticKernel::PrintName()
 
 double QuinticKernel::Value (const double & _q)
 {
-  if    (_q>=2.0) return 0.0;
-  else            return C*pow((1.0-_q/2.0),4.0)*(2.0*_q+1.0);
+  if (_q>=2.0)  return 0.0;
+  else          return C*gsl_pow_4(1.0-_q/2.0)*(2.0*_q+1.0);
 }
 
 double QuinticKernel::FirstDerivative (const double & _q)
 {
-  if      (_q>=2.0) return 0.0;
-  else if (_q> 0.0) return -5.0*C/h/h*pow((1.0-_q/2.0),3.0);
-  else              return -5.0*C/h/h*(pow((1.0-_q/2.0),3.0)-1.5*_q*pow((1.0-_q/2.0),2.0));
+  if (_q>=2.0)  return 0.0;
+  else          return -C/h*gsl_pow_3(1.0-_q/2.0)*(5.0*_q+2.0);
 }
 
 double QuinticKernel::SecondDerivative (const double & _q)
 {
-  if    (_q>=2.0) return 0.0;
-  else            return C/h/h*pow((1.0-_q/2.0),2.0)*(10.0*_q-5.0);
+  if (_q>=2.0)  return 0.0;
+  else          return C/gsl_pow_2(h)*gsl_pow_2(1.0-_q/2.0)*(10.0*_q-2.0);
 }
 
 double QuinticKernel::Laplacian (const double & _q)
 {
-  if    (_q>=2.0) return 0.0;
-  else            return C/h/h*(pow((1.0-_q/2.0),2.0)*(10.0*_q-5.0) + -5.0*(dim-1.0)*pow((1.0-_q/2.0),3.0));
+  return SecondDerivative(_q) - (dim-1.0)*FirstDerivative(_q);
 }
