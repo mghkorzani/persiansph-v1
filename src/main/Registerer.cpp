@@ -23,12 +23,18 @@
 
 Registerer::Registerer()
 {
+  // registering kernels
   Reg_Kernels.push_back (new QubicSplineKernel);
   Reg_Kernels.push_back (new QuinticSplineKernel);
   Reg_Kernels.push_back (new QuinticKernel);
+  // registering eos
+  Reg_EOS.push_back (new RelativeIdealGasEOS);
+  Reg_EOS.push_back (new TaitEOS);
+  Reg_EOS.push_back (new IdealGasEOS);
 }
 
 Registerer::~Registerer()
 {
   Reg_Kernels.clear();
+  Reg_EOS.clear();
 }

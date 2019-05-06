@@ -19,37 +19,18 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#ifndef REGISTERER_H
-#define REGISTERER_H
+#ifndef EOS_H
+#define EOS_H
 
-#include <vector>
+#include"MathUtil.h"
 
-// header of all registered kernels
-#include "QubicSplineKernel.h"
-#include "QuinticSplineKernel.h"
-#include "QuinticKernel.h"
-
-// header of all registered EOS
-#include "RelativeIdealGasEOS.h"
-#include "TaitEOS.h"
-#include "IdealGasEOS.h"
-
-class Registerer
+class EOS
 {
 public:
-  // constructor
-  Registerer();
-  // virtual destructor
-  virtual ~Registerer();
-
-  std::vector<Kernel*>  Reg_Kernels;
-  std::vector<EOS*>     Reg_EOS;
+  virtual void   PrintName() = 0;
+  virtual double Pressure (double const & _Cs, double const & _P_ref, double const & _rho, double const & _rho_ref) = 0;
+  virtual double Cs       (double const & _Cs, double const & _rho, double const & _rho_ref) = 0;
+  virtual double rho      (double const & _Cs, double const & _P_ref, double const & _pressure, double const & _rho_ref) = 0;
 };
 
-enum Kernels_Name
-        {Qubic_Spline = 0 , Quintic_Spline , Quintic};
-
-enum EOS_Name
-        {Relative_Ideal_Gas = 0 , Tait , Ideal_Gas};
-
-#endif // REGISTERER_H
+#endif // EOS_H

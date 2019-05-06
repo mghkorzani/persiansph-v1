@@ -19,37 +19,28 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#ifndef REGISTERER_H
-#define REGISTERER_H
+#include"RelativeIdealGasEOS.h"
 
-#include <vector>
-
-// header of all registered kernels
-#include "QubicSplineKernel.h"
-#include "QuinticSplineKernel.h"
-#include "QuinticKernel.h"
-
-// header of all registered EOS
-#include "RelativeIdealGasEOS.h"
-#include "TaitEOS.h"
-#include "IdealGasEOS.h"
-
-class Registerer
+inline void
+RelativeIdealGasEOS::PrintName()
 {
-public:
-  // constructor
-  Registerer();
-  // virtual destructor
-  virtual ~Registerer();
+  std::cout<<"EOS Type:   Relative Ideal Gas EOS (Cs^2*(rho-rho_ref))"<<std::endl;
+}
 
-  std::vector<Kernel*>  Reg_Kernels;
-  std::vector<EOS*>     Reg_EOS;
-};
+inline double
+RelativeIdealGasEOS::Pressure (double const & _Cs, double const & _P_ref, double const & _rho, double const & _rho_ref)
+{
+  return _P_ref+gsl_pow_2(_Cs)*(_rho-_rho_ref);
+}
 
-enum Kernels_Name
-        {Qubic_Spline = 0 , Quintic_Spline , Quintic};
+inline double
+RelativeIdealGasEOS::Cs (double const & _Cs, double const & _rho, double const & _rho_ref)
+{
+  return _Cs;
+}
 
-enum EOS_Name
-        {Relative_Ideal_Gas = 0 , Tait , Ideal_Gas};
-
-#endif // REGISTERER_H
+inline double
+RelativeIdealGasEOS::rho (double const & _Cs, double const & _P_ref, double const & _pressure, double const & _rho_ref)
+{
+  return (_pressure-_P_ref)/gsl_pow_2(_Cs)+_rho_ref;
+}
