@@ -19,7 +19,7 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include"IdealGasEOS.h"
+#include "IdealGasEOS.h"
 
 inline void
 IdealGasEOS::PrintName()

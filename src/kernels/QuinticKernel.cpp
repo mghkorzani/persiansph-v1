@@ -19,7 +19,7 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include"QuinticKernel.h"
+#include "QuinticKernel.h"
 
 QuinticKernel::QuinticKernel()
 {

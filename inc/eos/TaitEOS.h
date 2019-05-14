@@ -22,7 +22,7 @@
 #ifndef TAITEOS_H
 #define TAITEOS_H
 
-#include"EOS.h"
+#include "EOS.h"
 
 class TaitEOS : public EOS
 {

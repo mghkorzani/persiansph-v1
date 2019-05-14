@@ -27,7 +27,7 @@
 #ifndef QUINTICKERNEL_H
 #define QUINTICKERNEL_H
 
-#include"Kernel.h"
+#include "Kernel.h"
 
 class QuinticKernel : public Kernel
 {

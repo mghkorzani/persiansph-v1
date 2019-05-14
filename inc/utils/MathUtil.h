@@ -23,8 +23,9 @@
 #define MATHUTIL_H
 
 // standard c++ libraries
-#include <iostream>
 #include <cmath>
+#include <vector>
+#include <iostream>
 
 // Eigen library for matrices and vectors
 #include <Eigen/Dense>

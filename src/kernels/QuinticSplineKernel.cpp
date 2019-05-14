@@ -19,7 +19,7 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include"QuinticSplineKernel.h"
+#include "QuinticSplineKernel.h"
 
 QuinticSplineKernel::QuinticSplineKernel()
 {

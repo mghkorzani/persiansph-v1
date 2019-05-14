@@ -22,7 +22,7 @@
 #ifndef EOS_H
 #define EOS_H
 
-#include"MathUtil.h"
+#include "MathUtil.h"
 
 class EOS
 {

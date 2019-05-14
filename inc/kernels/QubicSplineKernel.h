@@ -22,7 +22,7 @@
 #ifndef QUBICSPLINEKERNEL_H
 #define QUBICSPLINEKERNEL_H
 
-#include"Kernel.h"
+#include "Kernel.h"
 
 class QubicSplineKernel : public Kernel
 {

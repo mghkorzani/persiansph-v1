@@ -22,7 +22,7 @@
 #ifndef IDEALGASEOS_H
 #define IDEALGASEOS_H
 
-#include"EOS.h"
+#include "EOS.h"
 
 class IdealGasEOS : public EOS
 {

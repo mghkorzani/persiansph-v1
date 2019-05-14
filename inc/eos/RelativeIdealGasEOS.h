@@ -22,7 +22,7 @@
 #ifndef RELATIVEIDEALGASEOS_H
 #define RELATIVEIDEALGASEOS_H
 
-#include"EOS.h"
+#include "EOS.h"
 
 class RelativeIdealGasEOS : public EOS
 {

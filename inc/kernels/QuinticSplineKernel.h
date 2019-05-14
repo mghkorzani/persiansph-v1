@@ -27,7 +27,7 @@
 #ifndef QUINTICSPLINEKERNEL_H
 #define QUINTICSPLINEKERNEL_H
 
-#include"Kernel.h"
+#include "Kernel.h"
 
 class QuinticSplineKernel : public Kernel
 {

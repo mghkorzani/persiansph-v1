@@ -22,7 +22,7 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-#include"MathUtil.h"
+#include "MathUtil.h"
 
 class Kernel
 {

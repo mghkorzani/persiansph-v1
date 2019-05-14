@@ -19,17 +19,18 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include "Kernel.h"
+#ifndef SUBDOMAIN_H
+#define SUBDOMAIN_H
 
-Kernel::Kernel()
-{}
-
-Kernel::~Kernel()
-{}
-
-inline void
-Kernel::Initialize (u_int _dim, double _h)
+class Subdomain
 {
-  dim = _dim;
-  h = _h;
-}
+public:
+  // constructor
+  Subdomain();
+  // virtual destructor
+  virtual ~Subdomain();
+
+protected:
+};
+
+#endif // SUBDOMAIN_H

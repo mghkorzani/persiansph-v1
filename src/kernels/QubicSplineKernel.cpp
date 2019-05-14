@@ -19,7 +19,7 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include"QubicSplineKernel.h"
+#include "QubicSplineKernel.h"
 
 QubicSplineKernel::QubicSplineKernel()
 {
