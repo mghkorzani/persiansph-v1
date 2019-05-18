@@ -19,42 +19,13 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#ifndef SUBDOMAIN_H
-#define SUBDOMAIN_H
+#ifndef ARRAY_H
+#define ARRAY_H
 
-#include "EOS.h"
+// standard c++ libraries
+#include <vector>
 
-class Subdomain
-{
-public:
-  // constructor & destructors
-  Subdomain();
-  ~Subdomain();
+template<class Type>
+using Array_D = std::vector<Type>;
 
-  // setter functions
-  void Tensile_Instability_Set  (bool _is_active, double _TI_Coef, double _TI_Pow);
-  void Shepard_Filter_Set (bool _is_active, uint _Shepard_Period = 40);
-  void EOS_Set  (EOS * eos, double _Cs, double _P0);
-
-
-protected:
-  // is "tensile instability" option true?
-  bool has_TI;
-  // required parameters for tensile instability
-  double TI_Coef;
-  double TI_Pow;
-
-  // is "shepard filter" option true?
-  bool has_Shepard;
-  // required number of step shepard for shepard filter correction
-  uint Shepard_Period;
-
-  // speed of sound
-  double Cs;
-  // background (reference) pressure for EOS
-  double P0;
-  // EOS pointer
-  EOS * eos;
-};
-
-#endif // SUBDOMAIN_H
+#endif // ARRAY_H

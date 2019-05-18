@@ -24,7 +24,6 @@
 
 // standard c++ libraries
 #include <cmath>
-#include <vector>
 #include <iostream>
 
 // Eigen library for matrices and vectors
