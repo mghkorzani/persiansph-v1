@@ -23,7 +23,7 @@
 #define MAIN_H
 
 #include <iostream>
-#include "Registerer.h"
+#include "Reg.h"
 #include "Subdomain.h"
 #include "Array.h"
 
@@ -36,12 +36,8 @@ public:
   virtual ~Main();
   // set kernel
   void Kernel_Set(Kernels_Name _kernel_name);
-  // // adding a subdomain
-  // void Add_Subdomain(EOS_Name _eos_name);
 
 protected:
-  // add all registered objects to this class
-  Registerer RO;
   // main kernel to be published
   Kernel * kernel;
   // array of subdomains

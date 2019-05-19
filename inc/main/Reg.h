@@ -19,10 +19,10 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#ifndef REGISTERER_H
-#define REGISTERER_H
+#ifndef REG_H
+#define REG_H
 
-#include <vector>
+#include "Array.h"
 
 // header of all registered kernels
 #include "QubicSplineKernel.h"
@@ -34,16 +34,17 @@
 #include "TaitEOS.h"
 #include "IdealGasEOS.h"
 
-class Registerer
+class Reg
 {
 public:
-  // constructor
-  Registerer();
-  // virtual destructor
-  virtual ~Registerer();
+  // all dynamic arrays should be initialised in this function
+  // this function is called in the constructor of the Main class
+  static void Initialiser();
 
-  std::vector<Kernel*>  Reg_Kernels;
-  std::vector<EOS*>     Reg_EOS;
+  // registering kernels
+  static Array_D<Kernel*>  Kernels;
+  // registering eos
+  static Array_D<EOS*>     EOSes;
 };
 
 enum Kernels_Name
@@ -52,4 +53,4 @@ enum Kernels_Name
 enum EOS_Name
         {Relative_Ideal_Gas = 0 , Tait , Ideal_Gas};
 
-#endif // REGISTERER_H
+#endif // REG_H

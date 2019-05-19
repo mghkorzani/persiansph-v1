@@ -19,22 +19,19 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include "Registerer.h"
+#include "Reg.h"
 
-Registerer::Registerer()
-{
-  // registering kernels
-  Reg_Kernels.push_back (new QubicSplineKernel);
-  Reg_Kernels.push_back (new QuinticSplineKernel);
-  Reg_Kernels.push_back (new QuinticKernel);
-  // registering eos
-  Reg_EOS.push_back (new RelativeIdealGasEOS);
-  Reg_EOS.push_back (new TaitEOS);
-  Reg_EOS.push_back (new IdealGasEOS);
-}
+Array_D<Kernel*>  Reg::Kernels;
+Array_D<EOS*>   Reg::EOSes;
 
-Registerer::~Registerer()
+void
+Reg::Initialiser()
 {
-  Reg_Kernels.clear();
-  Reg_EOS.clear();
+    Kernels.push_back (new QubicSplineKernel);
+    Kernels.push_back (new QuinticSplineKernel);
+    Kernels.push_back (new QuinticKernel);
+    
+    EOSes.push_back (new RelativeIdealGasEOS);
+    EOSes.push_back (new TaitEOS);
+    EOSes.push_back (new IdealGasEOS);
 }

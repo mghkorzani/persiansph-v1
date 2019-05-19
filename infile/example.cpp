@@ -24,28 +24,28 @@
 
 using namespace std;
 
-int main() {
-  Main Maziar;
+int main()
+{
+    Main Maziar;
 
-Mat m = Mat::Random();
-RVec a;
-CVec b;
-a = RVec::Constant(1);
-b = CVec::Constant(2);
+    Mat m = Mat::Random();
+    RVec a;
+    CVec b;
+    a = RVec::Constant(1);
+    b = CVec::Constant(2);
 
-std::cout<<m<<std::endl;
-std::cout<<a<<std::endl;
-std::cout<<b<<std::endl;
-std::cout<<a*m<<std::endl;
-std::cout<<m*b<<std::endl;
-std::cout<<a*b<<std::endl;
-std::cout<<b*a<<std::endl;
+    std::cout<<m<<std::endl;
+    std::cout<<a<<std::endl;
+    std::cout<<b<<std::endl;
+    std::cout<<a*m<<std::endl;
+    std::cout<<m*b<<std::endl;
+    std::cout<<a*b<<std::endl;
+    std::cout<<b*a<<std::endl;
 
 
+    Maziar.Kernel_Set(Qubic_Spline);
+    Maziar.Kernel_Set(Quintic);
+    Maziar.Kernel_Set(Quintic_Spline);
 
-  // Maziar.Kernel_Set(Qubic_Spline);
-  // Maziar.Kernel_Set(Quintic);
-  // Maziar.Kernel_Set(Quintic_Spline);
-
-  return 0;
+    return 0;
 }

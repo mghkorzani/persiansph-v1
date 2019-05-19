@@ -23,18 +23,21 @@
 
 Main::Main()
 {
+  // start registering of objects in the static class
+  Reg::Initialiser();
   // default assignment of the first kernel in the registered kernel arrays
   // to the kernel pointer
-  kernel = RO.Reg_Kernels[0];
+  kernel = Reg::Kernels[1];
 }
 
 Main::~Main()
 {}
 
-inline void
-Main::Kernel_Set(Kernels_Name kernel_name)
+void
+Main::Kernel_Set(Kernels_Name _kernel_name)
 {
-  kernel = RO.Reg_Kernels[kernel_name];
+  kernel->PrintName();
+  kernel = Reg::Kernels[_kernel_name];
 
   kernel->Initialize(3,1.0);
   double i = 0.0;
@@ -48,5 +51,4 @@ Main::Kernel_Set(Kernels_Name kernel_name)
     i = i + 0.1;
   }
   std::cout<< std::endl;
-
 }
