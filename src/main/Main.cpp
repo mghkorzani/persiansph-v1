@@ -23,7 +23,7 @@
 
 Main::Main()
 {
-  // start registering of objects in the static class
+  // registering of objects in the Reg static class
   Reg::Initialiser();
   // default assignment of the first kernel in the registered kernel arrays
   // to the kernel pointer
@@ -34,21 +34,27 @@ Main::~Main()
 {}
 
 void
-Main::Kernel_Set(Kernels_Name _kernel_name)
+Main::Kernel_Set(Kernels_Name _kernel_name, uint _dimension, double _smoothing_length)
 {
   kernel->PrintName();
   kernel = Reg::Kernels[_kernel_name];
 
-  kernel->Initialize(3,1.0);
-  double i = 0.0;
-  while (i<=kernel->width+0.1)
-  {
-    std::cout<< i <<" , ";
-    std::cout<< kernel->Value(i) <<" , ";
-    std::cout<< kernel->FirstDerivative(i) <<" , ";
-    std::cout<< kernel->SecondDerivative(i) <<" , ";
-    std::cout<< kernel->Laplacian(i) <<std::endl;
-    i = i + 0.1;
-  }
-  std::cout<< std::endl;
+  assert((_dimension == 2 || _dimension == 3) &&
+            "Dimesion of the model should be either 2 or 3.");
+
+  kernel->Initialize(_dimension, _smoothing_length);
+  dim = _dimension;
+  h = _smoothing_length;
+
+  // double i = 0.0;
+  // while (i<=kernel->width+0.1)
+  // {
+  //   std::cout<< i <<" , ";
+  //   std::cout<< kernel->Value(i) <<" , ";
+  //   std::cout<< kernel->FirstDerivative(i) <<" , ";
+  //   std::cout<< kernel->SecondDerivative(i) <<" , ";
+  //   std::cout<< kernel->Laplacian(i) <<std::endl;
+  //   i = i + 0.1;
+  // }
+  // std::cout<< std::endl;
 }

@@ -26,3 +26,26 @@ Subdomain::Subdomain()
 
 Subdomain::~Subdomain()
 {}
+
+void
+Subdomain::Tensile_Instability_Set  (bool _is_active, double _TI_Coef, double _TI_Pow)
+{
+    has_TI = _is_active;
+    TI_Coef = _TI_Coef;
+    TI_Pow = _TI_Pow;
+}
+
+void
+Subdomain::Shepard_Filter_Set (bool _is_active, uint _Shepard_Period)
+{
+    has_Shepard = _is_active;
+    Shepard_Period = _Shepard_Period;
+}
+
+void
+Subdomain::EOS_Set  (EOS_Name _eos_name, double _Cs, double _P0)
+{
+    eos = Reg::EOSes[_eos_name];
+    Cs = _Cs;
+    P0 = _P0;
+}

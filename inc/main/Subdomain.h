@@ -23,6 +23,7 @@
 #define SUBDOMAIN_H
 
 #include "EOS.h"
+#include "Reg.h"
 
 class Subdomain
 {
@@ -34,8 +35,7 @@ public:
   // setter functions
   void Tensile_Instability_Set  (bool _is_active, double _TI_Coef, double _TI_Pow);
   void Shepard_Filter_Set (bool _is_active, uint _Shepard_Period = 40);
-  void EOS_Set  (EOS * eos, double _Cs, double _P0);
-
+  void EOS_Set  (EOS_Name _eos_name, double _Cs, double _P0);
 
 protected:
   // is "tensile instability" option true?

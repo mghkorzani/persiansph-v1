@@ -23,6 +23,8 @@
 #define MAIN_H
 
 #include <iostream>
+#include <cassert>
+
 #include "Reg.h"
 #include "Subdomain.h"
 #include "Array.h"
@@ -35,13 +37,17 @@ public:
   // virtual destructor
   virtual ~Main();
   // set kernel
-  void Kernel_Set(Kernels_Name _kernel_name);
+  void Kernel_Set(Kernels_Name _kernel_name, uint _dimension, double _smoothing_length);
 
 protected:
   // main kernel to be published
   Kernel * kernel;
   // array of subdomains
-  Array_D<Subdomain> Subdomains;
+  Array_D<Subdomain> subdomains;
+  // dimension of problem 2D or 3D - no 1D is implemented
+  uint dim;
+  // smoothing length for kernel
+  double h;
 };
 
 #endif // MAIN_H

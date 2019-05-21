@@ -24,7 +24,7 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char **argv)
 {
     Main Maziar;
 
@@ -43,9 +43,9 @@ int main()
     std::cout<<b*a<<std::endl;
 
 
-    Maziar.Kernel_Set(Qubic_Spline);
-    Maziar.Kernel_Set(Quintic);
-    Maziar.Kernel_Set(Quintic_Spline);
+    Maziar.Kernel_Set(Qubic_Spline, 3, 1);
+    Maziar.Kernel_Set(Quintic, 3, 1);
+    Maziar.Kernel_Set(Quintic_Spline, 3, 1);
 
     return 0;
 }
