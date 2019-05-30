@@ -19,28 +19,11 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#ifndef MATHUTIL_H
-#define MATHUTIL_H
+#include "Particle.h"
 
-// standard c++ libraries
-#include <cmath>
-#include <iostream>
+Particle::Particle()
+{
+}
 
-// including OpenMP library for shared memory parallelization
-#include <omp.h>
-
-// Eigen library for matrices and vectors
-#include <Eigen/Dense>
-
-// GSL library for math calculations
-#include <gsl/gsl_math.h>
-
-typedef unsigned int uint;
-/** 3x3 Matrix. */
-typedef Eigen::Matrix3d Mat;
-/** 3x1 Vector. */
-typedef Eigen::Vector3d CVec;
-/** 3x1 Vector. */
-typedef Eigen::RowVector3d RVec;
-
-#endif // MATHUTIL_H
+Particle::~Particle()
+{}

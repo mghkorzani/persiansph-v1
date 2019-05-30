@@ -19,7 +19,7 @@
 # PersianSPH; if not, see <http://www.gnu.org/licenses/>                            #
 #####################################################################################
 
-CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED (VERSION 3.5)
 
 PROJECT (PersianSPH)
 
