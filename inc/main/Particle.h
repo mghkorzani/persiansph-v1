@@ -23,6 +23,7 @@
 #define PARTICLE_H
 
 #include "MathUtil.h"
+#include "Array.h"
 
 class Particle
 {
@@ -30,8 +31,29 @@ public:
   Particle();
   ~Particle();
 
+  // particle identification tag number
+  uint Tag;
+  // particle updatable variable at each time step
+  // particle position vector
+  CVec X;
+  // particle acceleration vector
+  CVec A;
+  // array of velocity vectors for using different integration scheme
+  Array_D<CVec> V;
+  // array of density for using different integration scheme
+  Array_D<double> Rho;
+  // 
+
+
+  // reference density for using in EOS
+  double Rho_Ref;
+
+
 protected:
-  omp_lock_t my_lock;		///< Open MP lock
+  // OpenMP lock for each particle
+  omp_lock_t my_lock;
+  // particle material identification number
+  uint  Mat_Tag;
 };
 
 #endif // PARTICLE_H

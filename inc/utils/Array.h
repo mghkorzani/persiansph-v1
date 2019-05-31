@@ -24,8 +24,12 @@
 
 // standard c++ libraries
 #include <vector>
+#include <array>
 
 template<class Type>
 using Array_D = std::vector<Type>;
+
+template<class Type, unsigned int N>
+using Array_S = std::array<Type,N>;
 
 #endif // ARRAY_H
