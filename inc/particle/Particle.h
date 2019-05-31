@@ -19,11 +19,19 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#include "Particle.h"
+#ifndef PARTICLE_H
+#define PARTICLE_H
 
-Particle::Particle()
+#include "MathUtil.h"
+#include "Array.h"
+
+class Particle : public Particle_General
 {
-}
+public:
+  Particle();
+  ~Particle();
 
-Particle::~Particle()
-{}
+protected:
+};
+
+#endif // PARTICLE_H

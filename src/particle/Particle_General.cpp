@@ -19,41 +19,11 @@
 * PersianSPH; if not, see <http://www.gnu.org/licenses/>                           *
 ************************************************************************************/
 
-#ifndef PARTICLE_H
-#define PARTICLE_H
+#include "Particle_General.h"
 
-#include "MathUtil.h"
-#include "Array.h"
-
-class Particle
+Particle_General::Particle_General()
 {
-public:
-  Particle();
-  ~Particle();
+}
 
-  // particle identification tag number
-  uint Tag;
-  // particle updatable variable at each time step
-  // particle position vector
-  CVec X;
-  // particle acceleration vector
-  CVec A;
-  // array of velocity vectors for using different integration scheme
-  Array_D<CVec> V;
-  // array of density for using different integration scheme
-  Array_D<double> Rho;
-  // 
-
-
-  // reference density for using in EOS
-  double Rho_Ref;
-
-
-protected:
-  // OpenMP lock for each particle
-  omp_lock_t my_lock;
-  // particle material identification number
-  uint  Mat_Tag;
-};
-
-#endif // PARTICLE_H
+Particle_General::~Particle_General()
+{}
