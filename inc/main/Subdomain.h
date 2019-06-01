@@ -33,7 +33,7 @@ public:
   ~Subdomain();
 
   // setter functions
-  void Tensile_Instability_Set  (bool _is_active, double _TI_Coef, double _TI_Pow);
+  void Tensile_Instability_Set  (bool _is_active, double _initial_distance, double _TI_Coef, double _TI_Pow = 4.0);
   void Shepard_Filter_Set (bool _is_active, uint _Shepard_Period = 40);
   void EOS_Set  (EOS_Name _eos_name, double _Cs, double _P0);
 
@@ -43,6 +43,7 @@ protected:
   // required parameters for tensile instability
   double TI_Coef;
   double TI_Pow;
+  double init_dist;
 
   // is "shepard filter" option true?
   bool has_Shepard;
@@ -55,6 +56,10 @@ protected:
   double P0;
   // EOS pointer
   EOS * eos;
+
+  // particle material identification number
+  uint  Mat_Tag;
+
 };
 
 #endif // SUBDOMAIN_H
